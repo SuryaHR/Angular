@@ -1,0 +1,26 @@
+<div class="jumbotron">
+    <div class="row mx-auto mt-2">
+        <div class="offset-md-4 col-md-3">
+            <div class="input-group">
+                <span class="input-group-text">Enter some text</span>
+                <input class="form-control" aria-label="With textarea" [(ngModel)]="inputTask">
+                <button class="btn btn-success" type="button" (click)="addTask()">Add</button>  
+            </div>            
+        </div>
+        <div class="offset-md-4 col-md-3">
+            <div *ngIf="taskList.length > 0; else noData">
+                <ul class="list-group" *ngFor="let task of taskList; let i = index">
+                    <li class="list-group-item">{{task}} <span class="pull-right w-5">
+                        <i class="fa fa-edit text-primary mt-1 hover" (click)="editTask(i)"></i>&nbsp;&nbsp;
+                        <i class="fa fa-trash text-danger hover" (click)="deleteTask(i)" [class.d-none] = "index == i"></i></span>
+                    </li>
+                </ul>
+            </div>
+            <ng-template #noData>
+                <div class="row text-center">
+                    <h6 class="mt-4">No texts to display. Enter some text.</h6>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
